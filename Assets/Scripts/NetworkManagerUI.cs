@@ -8,6 +8,9 @@ public class NetworkManagerUI : MonoBehaviour
 {
     [SerializeField] Button hostButton;
     [SerializeField] Button clientButton;
+    [SerializeField] Button physicsButton;
+
+    [SerializeField] GameObject spawnControl;
 
     private void Awake()
     {
@@ -19,5 +22,10 @@ public class NetworkManagerUI : MonoBehaviour
         {
             NetworkManager.Singleton.StartClient();
         });
+        physicsButton.onClick.AddListener(() =>
+        {
+            spawnControl.GetComponent<SpawnControl>().SpawnObjects();
+        });
+
     }
 }

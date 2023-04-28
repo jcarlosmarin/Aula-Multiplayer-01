@@ -6,6 +6,7 @@ using Unity.Netcode;
 public class CharacterMovement : NetworkBehaviour
 {
     [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Animator walkingAnimation;
 
     int speed = 5;
     int rotationspeed = 20;
@@ -35,6 +36,11 @@ public class CharacterMovement : NetworkBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.position += speed * Time.deltaTime * transform.forward;
+            walkingAnimation.SetBool("isWalking", true);
+        }
+        else
+        {
+            walkingAnimation.SetBool("isWalking", false);
         }
 
         //Fire
